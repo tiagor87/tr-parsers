@@ -70,22 +70,19 @@ stages:
   - stage: Deploy
     displayName: Deploy stage
     jobs:
-      - deployment: Deploy
+      - job: Deploy
         displayName: Deploy job
         pool:
-          vmImage: vs2017-win2016
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: DownloadPipelineArtifact@2
-                  inputs:
-                    patterns: '$(build.artifactstagingdirectory)/**/*.nupkg'
-      
-                - task: NuGetCommand@2
-                  displayName: 'NuGet push'
-                  inputs:
-                    command: push
-                    packagesToPush: '*.nupkg'
-                    nuGetFeedType: external
-                    publishFeedCredentials: Nuget
+          vmImage: vs2017-win2016        
+        steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              patterns: '$(build.artifactstagingdirectory)/**/*.nupkg'
+
+          - task: NuGetCommand@2
+            displayName: 'NuGet push'
+            inputs:
+              command: push
+              packagesToPush: '*.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: Nuget
