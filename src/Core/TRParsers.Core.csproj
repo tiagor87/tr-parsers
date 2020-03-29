@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageVersion>0.0.0</PackageVersion>
+    <Title>TRParsers.Core</Title>
+    <Authors>Tiago de Carvalho Resende</Authors>
+    <Description>Simple abstraction for parser implementation.</Description>
+    <PackageProjectUrl>https://github.com/tiagor87/tr-parsers</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tiagor87/tr-parsers</RepositoryUrl>
+    <PackageTags>parser, netcore, dotnet, simple, abstraction</PackageTags>
+    <ProjectGuid>{28B3835D-8369-4CB2-A1B3-8E0294EDB8D9}</ProjectGuid>
+  </PropertyGroup>
+
+</Project>
