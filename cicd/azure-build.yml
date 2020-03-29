@@ -1,5 +1,6 @@
-pool:
-  name: $(Version_Major).$(Version_Minor)$(rev:.r)
+name: $(Version_Major).$(Version_Minor)$(rev:.r)
+pool:  
+  name: Azure Pipelines
   demands: java
 
 variables:
