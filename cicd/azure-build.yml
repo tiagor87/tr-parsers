@@ -87,6 +87,6 @@ stages:
             displayName: 'NuGet push'
             inputs:
               command: push
-              packagesToPush: 'drop/**/*.nupkg'
+              packagesToPush: '*.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: Nuget
