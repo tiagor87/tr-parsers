@@ -75,7 +75,7 @@ stages:
         pool:
           vmImage: vs2017-win2016
         strategy:
-          runOne:
+          runOnce:
             deploy:
               steps:
                 - task: DownloadPipelineArtifact@2
