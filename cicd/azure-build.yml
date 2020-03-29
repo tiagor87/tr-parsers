@@ -78,15 +78,14 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              buildType: 'current'
-              downloadType: 'single'
               artifactName: 'drop'
               patterns: 'drop/**/*.nupkg'
+              downloadPath: '$(System.ArtifactsDirectory)'
 
           - task: NuGetCommand@2
             displayName: 'NuGet push'
             inputs:
               command: push
-              packagesToPush: 'TRParsers.Core.$(Build.BuildNumber).nupkg'
+              packagesToPush: '$(System.ArtifactsDirectory)/TRParsers.Core.$(Build.BuildNumber).nupkg'
               nuGetFeedType: external
               publishFeedCredentials: Nuget
