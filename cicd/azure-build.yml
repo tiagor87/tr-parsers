@@ -87,6 +87,6 @@ stages:
             displayName: 'NuGet push'
             inputs:
               command: push
-              packagesToPush: '*.nupkg'
+              packagesToPush: 'TRParsers.Core.$(Build.BuildNumber).nupkg'
               nuGetFeedType: external
               publishFeedCredentials: Nuget
