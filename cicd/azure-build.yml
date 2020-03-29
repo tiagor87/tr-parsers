@@ -81,7 +81,7 @@ stages:
               buildType: 'current'
               downloadType: 'single'
               artifactName: 'drop'
-              patterns: '*.nupkg'
+              patterns: 'drop'
 
           - task: NuGetCommand@2
             displayName: 'NuGet push'
