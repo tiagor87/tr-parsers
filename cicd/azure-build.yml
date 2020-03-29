@@ -64,8 +64,9 @@ stages:
           - task: PublishBuildArtifacts@1
             displayName: 'Publish Artifact'
             inputs:
-              PathtoPublish: '$(build.artifactstagingdirectory)/drop/*.nupkg'
-            condition: succeededOrFailed()
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              contents: '**/*.nupkg'
+              artifactName: 'drop'
   
   - stage: Deploy
     displayName: Deploy stage
@@ -77,12 +78,15 @@ stages:
         steps:
           - task: DownloadPipelineArtifact@2
             inputs:
-              patterns: '$(build.artifactstagingdirectory)/*.nupkg'
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              patterns: '$(System.ArtifactStagingDirectory)'
 
           - task: NuGetCommand@2
             displayName: 'NuGet push'
             inputs:
               command: push
-              packagesToPush: '*.nupkg'
+              packagesToPush: '$(System.ArtifactStagingDirectory)/**/*.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: Nuget
