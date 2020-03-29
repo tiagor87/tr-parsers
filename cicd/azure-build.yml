@@ -53,6 +53,7 @@ steps:
       command: pack
       packagesToPack: 'src/**/*.csproj'
       nobuild: true
+      arguments: '--configuration Release'
       versioningScheme: byBuildNumber
       
   - task: PublishBuildArtifacts@1
