@@ -2,6 +2,6 @@
 {
     public interface IParser<in TIn, out TOut>
     {
-        TOut Parser(TIn value, params object[] args);
+        TOut Parse(TIn value, params object[] args);
     }
 }

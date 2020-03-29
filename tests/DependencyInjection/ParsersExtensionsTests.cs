@@ -50,12 +50,12 @@ namespace TRParsers.DependencyInjection.Extentions.Tests
         
         private class TestParserStub : IParser<string, int>, IParser<string, double>
         {
-            public int Parser(string value, params object[] args)
+            public int Parse(string value, params object[] args)
             {
                 throw new NotImplementedException();
             }
 
-            double IParser<string, double>.Parser(string value, params object[] args)
+            double IParser<string, double>.Parse(string value, params object[] args)
             {
                 throw new NotImplementedException();
             }
