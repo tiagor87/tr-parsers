@@ -7,9 +7,9 @@ variables:
   
 stages:
   - stage: Build
-    displayName: Build nuget package
+    displayName: Build stage
     jobs:
-      - job: Build stage
+      - job: Build
         displayName: Build job
         pool:
           vmImage: vs2017-win2016
@@ -67,23 +67,25 @@ stages:
               PathtoPublish: '$(build.artifactstagingdirectory)'
             condition: succeededOrFailed()
   
-  - stage: Publish
-    displayName: Publish package
+  - stage: Deploy
+    displayName: Deploy stage
     jobs:
-      - job: Publish job
-        displayName: Publish job
+      - deployment: Deploy
+        displayName: Deploy job
         pool:
           vmImage: vs2017-win2016
-          demands: java
-        steps:
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              patterns: '$(build.artifactstagingdirectory)/**/*.nupkg'
-
-          - task: NuGetCommand@2
-            displayName: 'NuGet push'
-            inputs:
-              command: push
-              packagesToPush: '*.nupkg'
-              nuGetFeedType: external
-              publishFeedCredentials: Nuget
+        strategy:
+          runOne:
+            deploy:
+              steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    patterns: '$(build.artifactstagingdirectory)/**/*.nupkg'
+      
+                - task: NuGetCommand@2
+                  displayName: 'NuGet push'
+                  inputs:
+                    command: push
+                    packagesToPush: '*.nupkg'
+                    nuGetFeedType: external
+                    publishFeedCredentials: Nuget
