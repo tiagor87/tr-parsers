@@ -81,12 +81,12 @@ stages:
               buildType: 'current'
               downloadType: 'single'
               artifactName: 'drop'
-              patterns: '$(System.ArtifactStagingDirectory)'
+              patterns: '*.nupkg'
 
           - task: NuGetCommand@2
             displayName: 'NuGet push'
             inputs:
               command: push
-              packagesToPush: '$(System.ArtifactStagingDirectory)/**/*.nupkg'
+              packagesToPush: '*.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: Nuget
