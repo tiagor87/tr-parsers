@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace TRParsers.Core
+﻿namespace TRParsers.Core
 {
     public interface IParser<in TIn, out TOut>
     {
